@@ -12,7 +12,7 @@ namespace Client
         {
             using (var messageQueue = new MessageQueue(QueuePaths.TextMessageQueuePath))
             {
-                messageQueue.Formatter = new XmlMessageFormatter(new string[] { "System.String, mscorlib" });
+                messageQueue.Formatter = new XmlMessageFormatter(new Type[] { typeof(string) });
 
                 Message message = shouldRemove ? messageQueue.Receive() : messageQueue.Peek();
                 return message.Body.ToString();
